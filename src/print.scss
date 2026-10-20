@@ -1,0 +1,47 @@
+@media print {
+  /* Hide everything in the body by default */
+  body * {
+    visibility: hidden;
+  }
+  
+  /* Only show the receipt print area */
+  #receipt-print-area, #receipt-print-area * {
+    visibility: visible;
+  }
+  
+  /* Professional thermal receipt layout using Carbon spacing */
+  #receipt-print-area {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 320px; /* Standard thermal receipt width */
+    padding: var(--cds-spacing-05);
+    background-color: #ffffff !important;
+    color: #000000 !important;
+    border: none !important;
+    box-shadow: none !important;
+    font-family: 'IBM Plex Mono', monospace, var(--pos-font-family) !important;
+  }
+
+  /* Override internal typography for print legibility */
+  #receipt-print-area .heading-02 {
+    font-size: 1.25rem;
+    margin-bottom: var(--cds-spacing-04);
+    font-weight: 600;
+  }
+
+  #receipt-print-area .body-01 {
+    font-size: 0.875rem;
+    line-height: 1.4;
+  }
+
+  #receipt-print-area .heading-04 {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+
+  /* Ensure the dashed lines print in high contrast */
+  #receipt-print-area div[style*="borderTop"] {
+    border-top: 1px dashed #000000 !important;
+  }
+}

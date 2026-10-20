@@ -1,0 +1,159 @@
+@use '@carbon/react';
+@import '@carbon/ibm-products/css/index.min.css';
+
+:root {
+  --pos-font-family: 'IBM Plex Sans Arabic', 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  background-color: var(--cds-background);
+  color: var(--cds-text-primary);
+  font-family: var(--pos-font-family);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+button, input, select, textarea, .cds--btn, .cds--text-input, .cds--search-input, .cds--data-table {
+  font-family: var(--pos-font-family);
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+@import './print.scss';
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.rotating-icon {
+  animation: rotate 2s linear infinite;
+}
+
+/* POS Responsive Layout */
+.pos-layout {
+  display: flex;
+  gap: 2rem;
+  height: calc(100vh - 4rem - 3rem);
+  width: 100%;
+
+  @media (max-width: 1056px) {
+    flex-direction: column;
+    height: auto;
+    min-height: calc(100vh - 4rem - 3rem);
+  }
+}
+
+.pos-catalog {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  height: 100%;
+
+  @media (max-width: 1056px) {
+    height: 60vh; /* Fixed height on mobile/tablet to allow scrolling independently */
+  }
+}
+
+.pos-cart {
+  width: 380px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  @media (max-width: 1056px) {
+    width: 100%;
+    height: auto;
+    min-height: 400px;
+  }
+}
+
+/* Bi-Directional Layout Reflection (RTL ⇄ LTR) */
+[dir="rtl"] {
+  /* SideNav collapse translation in RTL */
+  .cds--side-nav--collapsed {
+    transform: translateX(16rem) !important;
+  }
+
+  /* Flip submenu chevrons for RTL reading direction */
+  .cds--side-nav__submenu-chevron svg {
+    transform: scaleX(-1);
+  }
+
+  .cds--side-nav__submenu[aria-expanded="true"] .cds--side-nav__submenu-chevron svg {
+    transform: rotate(90deg) scaleX(-1);
+  }
+
+  /* Mirror pagination navigation arrows */
+  .cds--pagination__button svg {
+    transform: scaleX(-1);
+  }
+
+  /* Mirror breadcrumb separators */
+  .cds--breadcrumb-item::after {
+    transform: scaleX(-1);
+  }
+
+  /* Text alignments */
+  .cds--search-close {
+    inset-inline-end: 0;
+  }
+}
+
+/* POS Numpad Touch Key Styling */
+.numpad-btn {
+  height: 52px;
+  min-height: 52px;
+  background-color: var(--cds-layer-01, #ffffff);
+  border: 1px solid var(--cds-border-subtle, #dcdcdc);
+  border-radius: 4px;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--cds-text-primary, #161616);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 120ms ease;
+  user-select: none;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+
+  &:hover {
+    background-color: var(--cds-layer-hover, var(--cds-layer-02, #f4f4f4));
+    border-color: var(--cds-border-strong, #a8a8a8);
+  }
+
+  &:active {
+    background-color: var(--cds-layer-active, var(--cds-layer-03, #e0e0e0));
+    transform: translateY(1px);
+  }
+}
+
+.numpad-active {
+  background-color: var(--cds-layer-selected, #e8dae6) !important;
+  color: var(--cds-link-primary, #0f62fe) !important;
+  border-color: var(--cds-focus, #0f62fe) !important;
+  font-weight: 700 !important;
+}
+

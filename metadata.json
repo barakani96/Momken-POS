@@ -1,0 +1,6 @@
+{
+  "name": "Full-Stack Point of Sale",
+  "description": "Enterprise Point of Sale and retail management application built exclusively with @carbon/react in full alignment with the Carbon Design System.",
+  "requestFramePermissions": ["serial"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
